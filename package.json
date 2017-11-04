@@ -1,0 +1,14 @@
+{
+  "name": "mongodb-graphql-backend",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log",
+    "start": "nodemon --inspect --exec babel-node index.js"
+  },
+  "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
+  "license": "Apache-2.0",
+  "devDependencies": {},
+  "dependencies": {}
+}

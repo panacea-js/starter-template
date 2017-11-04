@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Data directory but keep directory structure
+data/*
+
+# Allow .gitkeep files
+!.gitkeep
