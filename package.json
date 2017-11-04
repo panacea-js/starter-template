@@ -1,5 +1,5 @@
 {
-  "name": "mongodb-graphql-backend",
+  "name": "@panaceajs/starter",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -10,5 +10,9 @@
   "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
   "license": "Apache-2.0",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "nodemon": "^1.12.1"
+  }
 }
