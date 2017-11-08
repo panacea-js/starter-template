@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log",
-    "startapp": "npm run startdb & nodemon --inspect --exec babel-node index.js",
-    "start": "npm run startdb & npm run startapp"
+    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
+    "startapp": "nodemon --inspect --exec babel-node index.js",
+    "start": "npm run startdb && npm run startapp"
   },
   "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
   "license": "Apache-2.0",
