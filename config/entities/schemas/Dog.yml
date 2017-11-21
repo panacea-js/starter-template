@@ -2,7 +2,7 @@ description: Slobbery thing
 storage: db
 plural: Dogs
 fields:
-    _id:
+    id:
         label: Unique identifier
         type: id
     name:
