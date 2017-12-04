@@ -1,10 +1,10 @@
 import panacea from '@panaceajs/core'
-import { panaceaCMSmiddleware } from '@panaceajs/cms'
+import cmsMiddleware from '@panaceajs/cms/expressMiddleware'
 
-// See documentation for full list of options.
+// See documentation for full list of panacea() options.
 panacea().then(config => {
   const { app, options } = config
-  panaceaCMSmiddleware(app)
+  cmsMiddleware(app, options)
   app.listen(`${options.main.port}`)
   console.log(`Server started. Listening on port ${options.main.port}`)
 })
