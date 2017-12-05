@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
-    "startapp": "nodemon --inspect --exec babel-node index.js",
-    "start": "npm run startdb && npm run startapp",
     "build:env": "babel-node build/env",
-    "build:cms": "babel-node build/cms"
+    "build:cms": "babel-node build/cms",
+    "dev:cms": "babel-node build/cms-dev",
+    "start": "npm run startdb && npm run startapp",
+    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
+    "startapp": "nodemon --inspect --exec babel-node index.js"
   },
   "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
   "license": "Apache-2.0",
-  "devDependencies": {},
+  "devDependencies": {
+    "chokidar": "^1.7.0"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
