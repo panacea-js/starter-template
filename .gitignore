@@ -59,6 +59,10 @@ typings/
 
 # Data directory but keep directory structure
 data/*
+!data/db
+data/db/*
+!data/db_log
+data/db_log/*
 
 # Allow .gitkeep files
 !.gitkeep
