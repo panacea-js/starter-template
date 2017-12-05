@@ -7,6 +7,7 @@
     "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
     "startapp": "nodemon --inspect --exec babel-node index.js",
     "start": "npm run startdb && npm run startapp",
+    "build:env": "babel-node build/env",
     "build:cms": "babel-node build/cms"
   },
   "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
