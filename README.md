@@ -26,13 +26,11 @@ npm run start
 ```
 ### Step 5
 Visit:
-* Graphiql: [http://localhost:3000/graphiql]()
-* Voyager: [http://localhost:3000/voyager]()
-* Panacea CMS: [http://localhost:3000/cms]()
+* Graphiql: [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
+* Voyager: [http://localhost:3000/voyager](http://localhost:3000/voyager)
+* Panacea CMS: [http://localhost:3000/cms](http://localhost:3000/cms)
 
 ## Configuration
 
 * Edit `panacea.js`
 * Inspect `.env`
-
-
