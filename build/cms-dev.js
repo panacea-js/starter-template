@@ -7,15 +7,16 @@ import _ from 'lodash'
 /**
  * Build Panacea CMS with live reload.
  */
-export default (async function () {
+export default (function () {
   const panaceaConfigFile = path.resolve('./panacea.js')
   const nuxtConfigFile = require.resolve('@panaceajs/cms/nuxt.config')
+  const panaceaCmsDir = `${process.cwd()}/cms`
 
   const startDev = (oldNuxt) => {
-    cmsBuildCleanup()
-
     // Get build objects.
-    const { builder, config, nuxt } = cmsBuild({dev: true})
+    const { builder, config, nuxt } = cmsBuild({
+      dev: true
+    })
 
     const port = parseInt(process.env.APP_SERVE_PORT) + 1
     const host = process.env.APP_SERVE_HOST
@@ -29,12 +30,16 @@ export default (async function () {
 
   // Start dev
   let dev = startDev()
-  const panaceaCmsDir = `${process.cwd()}/cms`
+
 
   // Start watching for panacea.js and nuxt.config.js changes
   chokidar
-    .watch([panaceaConfigFile, nuxtConfigFile, panaceaCmsDir], { ignoreInitial: true })
-    .on('all', _.debounce(async (event, file) => {
+    .watch([panaceaConfigFile, nuxtConfigFile, panaceaCmsDir], {
+      ignoreInitial: true,
+      ignored: /(^|[\/\\])\../,
+    })
+    .on('all', _.debounce((event, file) => {
+      console.log("CALLED")
       console.log(`${file} changed`)
       console.log('Rebuilding the app...')
       dev = dev.then(startDev)
