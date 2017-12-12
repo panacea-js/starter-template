@@ -11,5 +11,5 @@ export default (async function () {
 
   // Execute build.
   console.log(`Building Panacea CMS at path ${config.build.publicPath} ...`)
-  await builder.build()
+  builder.build()
 })()

@@ -9,6 +9,9 @@ export default function() {
         // The path where the CMS should load.
         publicPath: '/cms'
       }
-    }
+    },
+    plugins: [
+      '@panaceajs/meta_tag'
+    ]
   }
 }
