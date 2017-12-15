@@ -11,7 +11,7 @@ export default function() {
       }
     },
     plugins: [
-      '@panaceajs/meta_tag'
+      '@panaceajs/meta-tag'
     ]
   }
 }

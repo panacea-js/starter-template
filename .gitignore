@@ -64,5 +64,8 @@ data/db/*
 !data/db_log
 data/db_log/*
 
+# Compilation directory
+.compiled
+
 # Allow .gitkeep files
 !.gitkeep
