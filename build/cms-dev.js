@@ -1,5 +1,4 @@
 import cmsBuild from '@panaceajs/cms/build/build'
-import cmsBuildCleanup from '@panaceajs/cms/build/build-cleanup'
 import path from 'path'
 import chokidar from 'chokidar'
 import _ from 'lodash'
