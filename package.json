@@ -1,7 +1,10 @@
 {
   "name": "@panaceajs/starter",
   "version": "0.0.0",
-  "description": "",
+  "description": "Panacea Starter Template Application",
+  "repository" : "panacea-js/starter-template",
+  "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
+  "license": "Apache-2.0",
   "main": "index.js",
   "scripts": {
     "build:env": "babel-node build/env",
@@ -11,8 +14,6 @@
     "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
     "startapp": "nodemon --inspect --exec babel-node index.js"
   },
-  "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
-  "license": "Apache-2.0",
   "devDependencies": {
     "chokidar": "^1.7.0"
   },
