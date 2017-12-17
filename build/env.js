@@ -2,9 +2,9 @@ import fs from 'fs-extra'
 import crypto from 'crypto'
 
 function randomKey (length) {
-  return crypto.randomBytes(Math.ceil(length/2))
+  return crypto.randomBytes(Math.ceil(length / 2))
     .toString('hex')
-    .slice(0,length)
+    .slice(0, length)
 }
 
 /**
@@ -17,7 +17,7 @@ export default (function () {
     return
   }
 
-  var key = randomKey(64);
+  var key = randomKey(64)
 
   const envContent = fs.readFileSync('.env.example', 'UTF-8')
     .replace('APP_KEY=', 'APP_KEY=' + key)
@@ -25,5 +25,4 @@ export default (function () {
   fs.writeFileSync('.env', envContent)
 
   console.log('Wrote .env file and generated APP_KEY.')
-
 })()

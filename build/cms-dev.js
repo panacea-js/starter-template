@@ -2,18 +2,21 @@ import cmsBuild from '@panaceajs/cms/build/build'
 import path from 'path'
 import chokidar from 'chokidar'
 import _ from 'lodash'
+import glob from 'glob'
 
 /**
  * Build Panacea CMS with live reload.
  */
 export default (function () {
   const panaceaConfigFile = path.resolve('./panacea.js')
-  const nuxtConfigFile = require.resolve('@panaceajs/cms/nuxt.config')
-  const panaceaCmsDir = `${process.cwd()}/cms`
+  const panaceaCmsDirs = glob.sync(path.resolve(process.cwd(), 'node_modules/@panaceajs/cms') + '/*')
+    .filter(dir => path.basename(dir) !== 'node_modules')
+
+  const applicationCmsDir = `${process.cwd()}/cms`
 
   const startDev = (oldNuxt) => {
     // Get build objects.
-    const { builder, config, nuxt } = cmsBuild({
+    const { builder, nuxt } = cmsBuild({
       dev: true
     })
 
@@ -30,18 +33,15 @@ export default (function () {
   // Start dev
   let dev = startDev()
 
-
   // Start watching for panacea.js and nuxt.config.js changes
   chokidar
-    .watch([panaceaConfigFile, nuxtConfigFile, panaceaCmsDir], {
+    .watch([panaceaConfigFile, ...panaceaCmsDirs, applicationCmsDir], {
       ignoreInitial: true,
-      ignored: /(^|[\/\\])\../,
+      ignored: /(^|[/\\])\../
     })
     .on('all', _.debounce((event, file) => {
-      console.log("CALLED")
       console.log(`${file} changed`)
       console.log('Rebuilding the app...')
       dev = dev.then(startDev)
     }), 2500)
-
 })()

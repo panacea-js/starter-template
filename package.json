@@ -2,7 +2,7 @@
   "name": "@panaceajs/starter",
   "version": "0.0.0",
   "description": "Panacea Starter Template Application",
-  "repository" : "panacea-js/starter-template",
+  "repository": "panacea-js/starter-template",
   "author": "Barry Fisher <hello@reallifedigital.com> (https://www.reallifedigital.com)",
   "license": "Apache-2.0",
   "main": "index.js",
@@ -10,21 +10,32 @@
     "build:env": "babel-node build/env",
     "build:cms": "babel-node build/cms",
     "dev:cms": "babel-node build/cms-dev",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
     "start": "npm run startdb && npm run startapp",
     "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
     "startapp": "nodemon --inspect --exec babel-node index.js"
   },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "DI"
+    ]
+  },
   "devDependencies": {
-    "chokidar": "^1.7.0"
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-register": "^6.26.0",
+    "chokidar": "^1.7.0",
+    "standard": "^10.0.3"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.26.0",
     "fs-extra": "^4.0.2",
+    "glob": "^7.1.2",
     "nodemon": "^1.12.1"
   }
 }
