@@ -7,7 +7,7 @@ export default function () {
       },
       build: {
         // The path where the CMS should load.
-        publicPath: '/cms'
+        publicPath: '/cms/'
       }
     },
     plugins: [

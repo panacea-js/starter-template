@@ -12,9 +12,10 @@
     "dev:cms": "babel-node build/cms-dev",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "start": "npm run startdb && npm run startapp",
-    "startdb": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
-    "startapp": "nodemon --inspect --exec babel-node index.js"
+    "start": "npm run build:cms && npm run start:db && npm run start:app",
+    "start:nobuild": "npm run start:db && npm run start:app",
+    "start:db": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate rename --logpath=data/db_log/mongod.log &",
+    "start:app": "nodemon --inspect --exec babel-node index.js"
   },
   "standard": {
     "parser": "babel-eslint",
