@@ -14,6 +14,12 @@ export default (function () {
 
   const applicationCmsDir = `${process.cwd()}/cms`
 
+  // Error handler
+  const onError = (err, instance) => {
+    debug('Error while reloading [nuxt.config.js]', err)
+    return Promise.resolve(instance) // Wait for next reload
+  }
+
   const startDev = (oldNuxt) => {
     // Get build objects.
     const { builder, nuxt } = cmsBuild({
@@ -28,6 +34,7 @@ export default (function () {
       .then(() => oldNuxt ? oldNuxt.close() : Promise.resolve()) // 2- Close old nuxt after successful build
       .then(() => nuxt.listen(port, host)) // 3- Start listening
       .then(() => nuxt) // 4- Pass new nuxt to watch chain
+      .catch((err) => onError(err, instance))
   }
 
   // Start dev
@@ -43,5 +50,5 @@ export default (function () {
       console.log(`${file} changed`)
       console.log('Rebuilding the app...')
       dev = dev.then(startDev)
-    }), 2500)
+    }), 0)
 })()
