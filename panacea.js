@@ -8,10 +8,15 @@ export default function () {
       build: {
         // The path where the CMS should load.
         publicPath: '/cms/'
+      },
+      vars: {
+        colors: {
+          primary: '#bada55'
+        }
       }
     },
     plugins: [
-      '@panaceajs/meta-tag'
+      //'@panaceajs/meta-tag'
     ]
   }
 }
