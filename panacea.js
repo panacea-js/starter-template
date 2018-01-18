@@ -11,7 +11,13 @@ export default function () {
       },
       vars: {
         colors: {
-          primary: '#bada55'
+          primary: '#bada55',
+          secondary: '#3a3a46',
+          accent: '#bada55',
+          error: '#ca372a',
+          info: '#2196F3',
+          success: '#97ba28',
+          warning: '#FFC107'
         }
       }
     },
