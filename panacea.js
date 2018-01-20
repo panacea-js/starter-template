@@ -22,7 +22,7 @@ export default function () {
       }
     },
     plugins: [
-      //'@panaceajs/meta-tag'
+      // '@panaceajs/meta-tag'
     ]
   }
 }
