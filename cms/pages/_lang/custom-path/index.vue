@@ -17,7 +17,7 @@ export default {
           content: this.$t("starter-app.description")
         }
       ]
-    };
+    }
   }
-};
+}
 </script>
