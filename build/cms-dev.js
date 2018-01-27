@@ -3,10 +3,46 @@ import path from 'path'
 import chokidar from 'chokidar'
 import _ from 'lodash'
 import glob from 'glob'
+import childProcess from 'child_process'
 
 process.env.DEBUG = process.env.DEBUG || 'build:*'
 const debug = require('debug')('build:cms')
 debug.color = 3 // Force yellow color
+
+/**
+ * Spawn database in child processes.
+ *
+ * Spawn graphql server in child processes because the nuxt
+ * hot reloading is served for development on a different port.
+ */
+_({
+  DB: () => childProcess.spawn('mongod',
+    [
+      '--directoryperdb',
+      '--dbpath=data/db',
+      '--logappend',
+      '--logRotate=rename',
+      '--logpath=data/db_log/mongod.log'
+    ]
+  ),
+  GRAPHQL_SERVER: () => childProcess.spawn('nodemon',
+    [
+      '--inspect',
+      '--exec',
+      'babel-node',
+      'index.js'
+    ]
+  )
+}).forEach((p, name) => {
+  const child = p()
+  child.stdout.on('data', function (data) {
+    process.stdout.write(`\nFrom: ${name}: ${data}`)
+  })
+
+  child.stderr.on('data', function (data) {
+    process.stdout.write(`\nFrom: ${name}: ${data}`)
+  })
+})
 
 /**
  * Build Panacea CMS with live reload.
@@ -21,7 +57,7 @@ export default (function () {
 
   // Error handler
   const onError = (err, instance) => {
-    debug('Error while reloading [nuxt.config.js]', err)
+    debug('Error while reloading', err)
     return Promise.resolve(instance) // Wait for next reload
   }
 
@@ -51,15 +87,13 @@ export default (function () {
     const host = process.env.APP_SERVE_HOST
 
     return Promise.resolve()
-      .then(
-      () =>
+      .then(() =>
         oldInstance && oldInstance.builder
           ? oldInstance.builder.unwatch()
           : Promise.resolve()
       )
       .then(() => builder.build()) // 1- Start build
-      .then(
-      () =>
+      .then(() =>
         oldInstance && oldInstance.nuxt
           ? oldInstance.nuxt.close()
           : Promise.resolve()
