@@ -23,6 +23,9 @@ export default function () {
     },
     plugins: [
       // '@panaceajs/meta-tag'
-    ]
+    ],
+    locales: {
+      default: 'en'
+    }
   }
 }
