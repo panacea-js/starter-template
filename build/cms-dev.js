@@ -106,7 +106,7 @@ export default (function () {
   // Start dev
   let dev = startDev()
 
-  // Start watching for panacea.js changes.
+  // Start watching for panacea.js changes for full rebuild.
   chokidar
     .watch([panaceaConfigFile], {
       ignoreInitial: true,
@@ -117,4 +117,16 @@ export default (function () {
       console.log('Rebuilding the app...')
       dev = dev.then(startDev)
     }, 200))
+
+  // Start watching for cms and app changes for compile only build.
+  chokidar
+    .watch([...panaceaCmsDirs, applicationCmsDir], {
+      ignoreInitial: true,
+      ignored: /(^|[/\\])\../
+    })
+    .on('all', _.debounce((event, file) => {
+      console.log(`${file} changed`)
+      cmsBuild({compileOnly: true})
+    }, 200))
+
 })()
