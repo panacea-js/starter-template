@@ -106,19 +106,15 @@ export default (function () {
   // Start dev
   let dev = startDev()
 
-  // Start watching for panacea.js and nuxt.config.js changes
+  // Start watching for panacea.js changes.
   chokidar
-    .watch([panaceaConfigFile, ...panaceaCmsDirs, applicationCmsDir], {
+    .watch([panaceaConfigFile], {
       ignoreInitial: true,
       ignored: /(^|[/\\])\../
     })
-    .on(
-    'all',
-    _.debounce((event, file) => {
+    .on('all', _.debounce((event, file) => {
       console.log(`${file} changed`)
       console.log('Rebuilding the app...')
       dev = dev.then(startDev)
-    }),
-    0
-    )
+    }, 200))
 })()
