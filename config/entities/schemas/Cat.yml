@@ -1,22 +1,76 @@
-description: Lovely furry thing
+description: Lovely furry thing. Meow!
 storage: db
 plural: Cats
 fields:
-    id:
-        label: Unique identifier
-        type: id
-    name:
+  id:
+    label: Unique identifier
+    type: id
+  name:
+    label: Name
+    description: The name of the cat
+    type: string
+  toys:
+    label: Toys
+    type: object
+    description: A inventory of the Cat's toys
+    fields:
+      name:
         label: Name
         type: string
-        required: true
-    breed:
-        label: Breed
+        description: The name of the toy
+      size:
+        label: Size
         type: string
-    cost:
-        label: Cost
+        description: The toy size
+        values:
+          large:
+            label: Large
+          medium:
+            label: Small
+          small:
+            label: Small
+      quantity:
+        label: Quantity
         type: float
-    livesWithDogs:
-        label: Lives with dogs
-        type: reference
-        references: Dog
-        many: true
+      attributes:
+        label: Toy attributes
+        type: object
+        description: Key/values that describe the toy
+        fields:
+          key:
+            label: Key
+            type: string
+            description: The attribute key
+          value:
+            label: Value
+            type: string
+            description: The attribute value
+          attributes:
+            label: Toy attributes
+            type: object
+            description: Key/values that describe the toy
+            fields:
+              key:
+                label: Key
+                type: string
+                description: The attribute key
+              value:
+                label: Value
+                type: string
+                description: The attribute value
+  livesWithDogs:
+    label: Lives with dogs
+    description: The dogs that the cat lives with
+    type: reference
+    references: Dog
+  breed:
+    label: Breed
+    type: string
+  newFieldFtw:
+    type: string
+    label: New field FTW
+    description: Something here
+  marchField:
+    type: string
+    label: March field
+    description: Something here

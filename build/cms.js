@@ -6,7 +6,7 @@ import cmsBuild from '@panaceajs/cms/build/build'
 export default (async function () {
   // Get build objects.
   const { builder, config } = await cmsBuild({dev: false})
-  const { chalk } = DI.container
+  const { chalk } = Panacea.container
 
   // Execute build.
   console.log(chalk.green(`Building Panacea CMS at path ${config.build.publicPath} ...`))
