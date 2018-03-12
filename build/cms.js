@@ -10,5 +10,8 @@ export default (async function () {
 
   // Execute build.
   console.log(chalk.green(`Building Panacea CMS at path ${config.build.publicPath} ...`))
-  builder.build()
+  await builder.build()
+
+  // Ensure process exits after build is complete.
+  process.exit()
 })()
