@@ -61,14 +61,14 @@ export default (function () {
     return Promise.resolve(instance) // Wait for next reload
   }
 
-  const startDev = oldInstance => {
+  const startDev = async (oldInstance) => {
     let instance
     let builder
     let nuxt
 
     try {
       // Get build objects.
-      const cmsBuildInstance = cmsBuild({
+      const cmsBuildInstance = await cmsBuild({
         dev: true
       })
 
