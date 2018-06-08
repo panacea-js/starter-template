@@ -6,8 +6,13 @@ import glob from 'glob'
 import childProcess from 'child_process'
 
 process.env.DEBUG = process.env.DEBUG || 'build:*'
-const debug = require('debug')('build:cms')
+const debug = require('debug')('*')
 debug.color = 3 // Force yellow color
+
+// Ensure PATH includes the node_modules bins.
+if (process.env.PATH.indexOf('node_modules/.bin') === -1) {
+  process.env.PATH = process.env.PATH += `:${path.join(process.cwd(), 'node_modules/.bin')}`
+}
 
 /**
  * Spawn database in child processes.
@@ -24,7 +29,7 @@ _({
       '--logRotate=rename',
       '--logpath=data/db_log/mongod.log'
     ]
-  ),
+  ).on('error', function( err ){ throw err }),
   GRAPHQL_SERVER: () => childProcess.spawn('nodemon',
     [
       '--inspect',
@@ -32,7 +37,7 @@ _({
       'babel-node',
       'index.js'
     ]
-  )
+  ).on('error', function( err ){ throw err })
 }).forEach((p, name) => {
   const child = p()
   child.stdout.on('data', function (data) {
