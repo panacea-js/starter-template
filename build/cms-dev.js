@@ -29,7 +29,7 @@ _({
       '--logRotate=rename',
       '--logpath=data/db_log/mongod.log'
     ]
-  ).on('error', function( err ){ throw err }),
+  ).on('error', function (error) { console.error(error) }),
   GRAPHQL_SERVER: () => childProcess.spawn('nodemon',
     [
       '--inspect',
@@ -37,7 +37,7 @@ _({
       'babel-node',
       'index.js'
     ]
-  ).on('error', function( err ){ throw err })
+  ).on('error', function (error) { console.error(error) })
 }).forEach((p, name) => {
   const child = p()
   child.stdout.on('data', function (data) {
@@ -120,7 +120,7 @@ export default (function () {
     .on('all', _.debounce((event, file) => {
       console.log(`${file} changed`)
       console.log('Rebuilding the app...')
-      dev = dev.then(startDev)
+      dev = dev.then(startDev).catch(error => console.error(error))
     }, 200))
 
   // Start watching for cms and app changes for compile only build.
