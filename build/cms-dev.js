@@ -20,34 +20,27 @@ if (process.env.PATH.indexOf('node_modules/.bin') === -1) {
  * Spawn graphql server in child processes because the nuxt
  * hot reloading is served for development on a different port.
  */
-_({
-  DB: () => childProcess.spawn('mongod',
-    [
-      '--directoryperdb',
-      '--dbpath=data/db',
-      '--logappend',
-      '--logRotate=rename',
-      '--logpath=data/db_log/mongod.log'
-    ]
-  ).on('error', function (error) { console.error(error) }),
-  GRAPHQL_SERVER: () => childProcess.spawn('nodemon',
-    [
-      '--inspect',
-      '--exec',
-      'babel-node',
-      'index.js'
-    ]
-  ).on('error', function (error) { console.error(error) })
-}).forEach((p, name) => {
-  const child = p()
-  child.stdout.on('data', function (data) {
-    process.stdout.write(`\nFrom: ${name}: ${data}`)
-  })
 
-  child.stderr.on('data', function (data) {
-    process.stdout.write(`\nFrom: ${name}: ${data}`)
-  })
-})
+childProcess.spawn('mongod',
+  [
+    '--directoryperdb',
+    '--dbpath=data/db',
+    '--logappend',
+    '--logRotate=rename',
+    '--logpath=data/db_log/mongod.log'
+  ],
+  {stdio: 'inherit'}
+).on('error', function (error) { console.error(error) })
+
+childProcess.spawn('nodemon',
+  [
+    '--inspect',
+    '--exec',
+    'babel-node',
+    'index.js'
+  ],
+  {stdio: 'inherit'}
+).on('error', function (error) { console.error(error) })
 
 /**
  * Build Panacea CMS with live reload.
@@ -133,5 +126,4 @@ export default (function () {
       console.log(`${file} changed`)
       cmsBuild({compileOnly: true})
     }, 200))
-
 })()
