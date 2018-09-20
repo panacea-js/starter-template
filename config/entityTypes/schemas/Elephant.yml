@@ -1,0 +1,8 @@
+storage: db
+description: ''
+plural: Elephants
+group: Animals
+fields:
+  id:
+    label: Unique identifier
+    type: id

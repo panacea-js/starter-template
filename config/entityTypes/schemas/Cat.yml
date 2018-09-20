@@ -1,14 +1,18 @@
-description: Lovely furry thing. Meow!
+description: Lovely furry thing. Meow!!
 storage: db
 plural: Cats
+group: Animals
 fields:
   id:
-    label: Unique identifier
+    label: Cat ID
     type: id
   name:
     label: Name
     description: The name of the cat
     type: string
+    index: true
+    required: true
+    title: true
   toys:
     label: Toys
     type: object
@@ -45,32 +49,45 @@ fields:
             label: Value
             type: string
             description: The attribute value
-          attributes:
-            label: Toy attributes
-            type: object
-            description: Key/values that describe the toy
-            fields:
-              key:
-                label: Key
-                type: string
-                description: The attribute key
-              value:
-                label: Value
-                type: string
-                description: The attribute value
+          publishPublicly:
+            type: string
+            label: Publish Publicly
+        many: true
+    many: true
+  breeds:
+    type: string
+    label: Breeds
+    many: true
+    description: The breeds of cat
+    default: Lab
   livesWithDogs:
     label: Lives with dogs
     description: The dogs that the cat lives with
     type: reference
     references: Dog
-  breed:
-    label: Breed
-    type: string
-  newFieldFtw:
-    type: string
-    label: New field FTW
-    description: Something here
-  marchField:
-    type: string
-    label: March field
-    description: Something here
+    many: true
+  location:
+    type: object
+    label: Location
+    fields:
+      line1:
+        type: string
+        label: Line1
+      line2:
+        type: string
+        label: Line2
+    description: Home of the cat
+  juneObject:
+    type: object
+    label: June object
+    fields:
+      blah1:
+        type: string
+        label: Blah 1
+        required: true
+  cost:
+    type: float
+    label: Cost
+    required: true
+    default: '66'
+revisions: true

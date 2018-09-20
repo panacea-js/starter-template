@@ -1,0 +1,35 @@
+description: Slobbery thing
+storage: db
+plural: Dogs
+group: Animals
+fields:
+  id:
+    label: Dog ID
+    type: id
+  name:
+    label: Name
+    description: The dog's name
+    type: string
+  livesWithCats:
+    label: Lives with cats
+    type: reference
+    references: Cat
+    many: true
+  breed:
+    label: Breed
+    type: string
+  cost:
+    label: Cost
+    type: float
+  nestedObject:
+    type: object
+    label: Nested object
+    fields:
+      name:
+        type: string
+        label: Name
+        required: true
+      thing:
+        type: string
+        label: Thing
+revisions: true

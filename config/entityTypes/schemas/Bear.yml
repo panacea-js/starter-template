@@ -1,0 +1,8 @@
+storage: db
+group: Animals
+description: ''
+plural: Bears
+fields:
+  id:
+    label: Unique identifier
+    type: id

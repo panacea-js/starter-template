@@ -1,0 +1,27 @@
+storage: db
+description: ''
+plural: Categories
+group: Taxonomies
+fields:
+  id:
+    label: Term ID
+    type: id
+  name:
+    type: string
+    label: Name
+    required: true
+  colorHex:
+    type: string
+    label: Color (hex)
+    required: true
+  attributes:
+    type: object
+    label: Attributes
+    many: true
+    fields:
+      key:
+        type: string
+        label: Key
+      value:
+        type: string
+        label: Value
