@@ -15,7 +15,9 @@
     "start": "npm run start:db && npm run build:cms && npm run start:app",
     "start:nobuild": "npm run start:db && npm run start:app",
     "start:db": "mongod --directoryperdb --dbpath=data/db --logappend --logRotate=rename --logpath=data/db_log/mongod.log &",
-    "start:app": "nodemon --exec babel-node index.js"
+    "start:app": "nodemon --exec babel-node index.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -38,6 +40,8 @@
     "debug": "^3.1.0",
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
-    "nodemon": "^1.12.1"
-  }
+    "nodemon": "^1.14.11",
+    "snyk": "^1.103.1"
+  },
+  "snyk": true
 }
