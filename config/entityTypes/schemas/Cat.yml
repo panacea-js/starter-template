@@ -60,11 +60,13 @@ fields:
     many: true
     description: The breeds of cat
     default: Lab
-  livesWithDogs:
-    label: Lives with dogs
-    description: The dogs that the cat lives with
+  livesWithAnimals:
+    label: Lives with dogs and/or cats
+    description: The other animals that the cat lives with
     type: reference
-    references: Dog
+    references:
+        - Dog
+        - Cat
     many: true
   location:
     type: object
